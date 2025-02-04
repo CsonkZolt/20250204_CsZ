@@ -1,5 +1,5 @@
 <?php
-    echo "Hello world";
+    echo "Hello world <pre>";
     $valtozo1 = 1;
     $valtozo1 = "qwe";
     $valtozo1 = false;
@@ -32,3 +32,13 @@
     $auto->szin = "piros";
     $auto->setMarka("Skoda");
     var_dump($auto);
+    include_once 'SportCar.php';
+
+    $sportcar = new SportCar("Ford","Barna", 2020);
+    $sportcar->setKobcenti(5500);
+    var_dump($sportcar);
+
+    echo "sport auto szine: ", $sportcar->szin,"<br>";
+    echo "sport auto köbcentije: ", $sportcar->getKobcenti(),"<br>";
+
+    echo "kobcenti: ",$sportcar->setKobcenti(2000)->getKobcenti(),"<br>";
