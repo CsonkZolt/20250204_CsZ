@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,26 @@ Route::post("/users" , [Controller::class,"createUser"]);
 Route::put("/user/{user}", [Controller::class, "updateUser"]);
 
 Route::delete("/user/{user}", [ Controller::class, "deleteUser"]);
+
+Route::group([
+    "prefix" => "/cars",
+    "controller" => CarController::class
+], function () {
+    Route::get("/", "get");
+
+});
+
+Route::middleware('auth:sanctum')->get('/car', function (Request $request) {
+    return $request->car();
+});
+
+Route::get("/cars", [
+    CarController::class,
+    "getCars"
+]);
+
+Route::post("/cars" , [CarController::class,"createCar"]);
+
+Route::put("/car/{car}", [CarController::class, "updateCar"]);
+
+Route::delete("/car/{car}", [ CarController::class, "deleteCar"]);
