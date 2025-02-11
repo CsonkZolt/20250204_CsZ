@@ -9,6 +9,7 @@ class OwnerController extends Controller
 {
     public function getOwners(){
         $owners = Owner::query()
+            ->with("cars")
             ->get();
         return response()->json($owners);
     }
@@ -23,7 +24,7 @@ class OwnerController extends Controller
     }
     public function deleteOwner(Owner $owner){
         $owner->delete();
-        
+
         return response()->json("", 204);
     }
 
